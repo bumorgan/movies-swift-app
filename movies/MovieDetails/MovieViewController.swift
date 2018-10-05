@@ -19,8 +19,12 @@ class MovieViewController: UIViewController, MovieView {
     var movie: MovieDetailsRM?
     var moviePresenter: MoviePresenter!
     
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         moviePresenter = MoviePresenter(movieView: self)
         moviePresenter.getMovieDetails(id: movieId)
     }
@@ -30,5 +34,7 @@ class MovieViewController: UIViewController, MovieView {
         self.overviewLabel.text = self.movie?.overview
         self.movieTitleLabel.text = "\(self.movie?.title ?? "No title") (\(self.movie?.releaseDate.components(separatedBy: "-")[0] ?? "????"))"
         self.movieImageView.kf.setImage(with: URL(string: self.movie?.backdropUrl ?? ""))
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
     }
 }

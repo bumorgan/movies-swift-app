@@ -16,9 +16,12 @@ class MoviesViewController: UIViewController, MoviesView {
     var movies: [MovieRM]?
     var adapter: MoviesTableViewAdapter!
     var moviesPresenter: MoviesPresenter!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         adapter = MoviesTableViewAdapter(tableView: moviesTableView)
         moviesPresenter = MoviesPresenter(moviesView: self)
         moviesPresenter.getMovieSummaryList()
@@ -27,6 +30,8 @@ class MoviesViewController: UIViewController, MoviesView {
     func displayMoviesView(movies: [MovieRM]) {
         self.movies = movies
         self.adapter.setData(movies: movies)
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

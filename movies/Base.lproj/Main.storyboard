@@ -51,11 +51,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cmM-6U-TCC">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yiu-bc-Rsk" firstAttribute="bottom" secondItem="RdV-t4-0oy" secondAttribute="bottom" id="J8l-BX-HfU"/>
+                            <constraint firstItem="cmM-6U-TCC" firstAttribute="centerY" secondItem="YLk-1f-Lk7" secondAttribute="centerY" id="K9W-t4-GCt"/>
                             <constraint firstItem="yiu-bc-Rsk" firstAttribute="top" secondItem="RdV-t4-0oy" secondAttribute="top" id="RII-xt-sgk"/>
+                            <constraint firstItem="cmM-6U-TCC" firstAttribute="centerX" secondItem="YLk-1f-Lk7" secondAttribute="centerX" id="XDj-81-k8S"/>
                             <constraint firstItem="yiu-bc-Rsk" firstAttribute="trailing" secondItem="RdV-t4-0oy" secondAttribute="trailing" id="jHc-5i-mpT"/>
                             <constraint firstItem="yiu-bc-Rsk" firstAttribute="leading" secondItem="RdV-t4-0oy" secondAttribute="leading" id="s9m-hr-RbK"/>
                         </constraints>
@@ -63,6 +68,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="gQU-ht-9Bv"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="cmM-6U-TCC" id="90c-ay-rGc"/>
                         <outlet property="moviesTableView" destination="yiu-bc-Rsk" id="Svc-jU-BVZ"/>
                     </connections>
                 </viewController>
@@ -79,20 +85,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="81" translatesAutoresizingMaskIntoConstraints="NO" id="PqC-YO-kGC">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="562"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XZJ-JW-Aa5">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Movie title (year)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqb-gp-tu7">
-                                        <rect key="frame" x="16" y="481" width="343" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqb-gp-tu7">
+                                        <rect key="frame" x="16" y="481" width="343" height="0.0"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Overview:" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvG-Vc-m60">
-                                        <rect key="frame" x="18" y="582.5" width="339" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvG-Vc-m60">
+                                        <rect key="frame" x="18" y="562" width="339" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -109,16 +115,23 @@
                                     <constraint firstItem="kvG-Vc-m60" firstAttribute="top" secondItem="iqb-gp-tu7" secondAttribute="bottom" constant="18" id="mBo-Ot-G9J"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mxj-ny-aD5">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="mxj-ny-aD5" firstAttribute="centerY" secondItem="MHJ-uF-gA7" secondAttribute="centerY" id="2SO-XM-fVm"/>
                             <constraint firstItem="PqC-YO-kGC" firstAttribute="leading" secondItem="dd6-9g-Nw2" secondAttribute="leading" id="Aed-9v-uMX"/>
                             <constraint firstItem="PqC-YO-kGC" firstAttribute="trailing" secondItem="dd6-9g-Nw2" secondAttribute="trailing" id="N5f-54-xj8"/>
                             <constraint firstItem="PqC-YO-kGC" firstAttribute="top" secondItem="dd6-9g-Nw2" secondAttribute="top" id="Ysc-dG-iXf"/>
+                            <constraint firstItem="PqC-YO-kGC" firstAttribute="top" secondItem="dd6-9g-Nw2" secondAttribute="top" id="cbo-hR-G4k"/>
+                            <constraint firstItem="mxj-ny-aD5" firstAttribute="centerX" secondItem="MHJ-uF-gA7" secondAttribute="centerX" id="wlM-yo-dvO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dd6-9g-Nw2"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="mxj-ny-aD5" id="ick-Vb-xrf"/>
                         <outlet property="movieImageView" destination="XZJ-JW-Aa5" id="0Yj-t8-iGc"/>
                         <outlet property="movieTitleLabel" destination="iqb-gp-tu7" id="RuL-cj-ANs"/>
                         <outlet property="overviewLabel" destination="kvG-Vc-m60" id="Jcc-wM-35V"/>
