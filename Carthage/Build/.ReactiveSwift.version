@@ -1,0 +1,27 @@
+{
+  "Mac" : [
+    {
+      "name" : "ReactiveSwift",
+      "hash" : "c7563b896849a64cab1ee065959962d501a7521b0042c42bc339b4279083868e"
+    }
+  ],
+  "watchOS" : [
+    {
+      "name" : "ReactiveSwift",
+      "hash" : "685fc4bbadf8efe2f6d304d7544dc6d4d132c716af4f0f169ae0edf90e7f8a97"
+    }
+  ],
+  "tvOS" : [
+    {
+      "name" : "ReactiveSwift",
+      "hash" : "2a4350b11e988b343d86b79fb82a6540b92ddbc0510b03ac310f2230065a4b92"
+    }
+  ],
+  "commitish" : "3.1.0",
+  "iOS" : [
+    {
+      "name" : "ReactiveSwift",
+      "hash" : "4e351d44c71efd80f87907c0de6b169359aa840347449ceafddf96b8029b2762"
+    }
+  ]
+}
