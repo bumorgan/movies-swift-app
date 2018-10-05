@@ -1,26 +1,27 @@
 //
-//  ViewController.swift
+//  MovieApiService.swift
 //  movies
 //
-//  Created by Bruno Morgan on 02/10/18.
+//  Created by Bruno Morgan on 05/10/18.
 //  Copyright © 2018 Bruno Morgan. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Moya
 
-class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class MoviesApiService {
+    
+    func getMoviesData() -> [MovieRM] {
+        
         let provider = MoyaProvider<MovieApi>()
         provider.request(.movies) { (result) in
             switch result {
             case .success(let response):
-                let movies = try? response.map([MovieRM].self)
-                //print(movies!)
+                return try? response.map([MovieRM].self)
             case .failure(let error):
                 print(error)
             }
         }
     }
+    
 }
