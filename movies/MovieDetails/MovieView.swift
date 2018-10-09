@@ -9,5 +9,8 @@
 import Foundation
 
 protocol MovieView {
-    func displayMovieView(movie: MovieDetailsRM) -> Void
+    func displayMovieView(movie: MovieDetailsRM)
+    func displayLoading()
+    func hideLoading()
+    func displayEmptyState()
 }

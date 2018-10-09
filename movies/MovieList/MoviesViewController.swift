@@ -20,8 +20,6 @@ class MoviesViewController: UIViewController, MoviesView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
         adapter = MoviesTableViewAdapter(tableView: moviesTableView)
         moviesPresenter = MoviesPresenter(moviesView: self)
         moviesPresenter.getMovieSummaryList()
@@ -30,8 +28,22 @@ class MoviesViewController: UIViewController, MoviesView {
     func displayMoviesView(movies: [MovieRM]) {
         self.movies = movies
         self.adapter.setData(movies: movies)
+    }
+    
+    func displayLoading() {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    
+    func hideLoading() {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
+    }
+    
+    func displayEmptyState() {
+        let alert = UIAlertController(title: "Failed to get the movies list", message: "No internet connection", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { action in self.moviesPresenter.getMovieSummaryList() }))        
+        self.present(alert, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

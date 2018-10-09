@@ -18,14 +18,17 @@ class MoviesPresenter {
     
     func getMovieSummaryList() -> Void {
         let provider = MoyaProvider<MovieApi>()
+        self.moviesView.displayLoading()
         provider.request(.movies) { (result) in
             switch result {
             case .success(let response):
                 if let movies = try? response.map([MovieRM].self) {
                     self.moviesView.displayMoviesView(movies: movies)
+                    self.moviesView.hideLoading()
                 }
-            case .failure(let error):
-                print(error)
+            case .failure:
+                self.moviesView.hideLoading()
+                self.moviesView.displayEmptyState()
             }
         }
     }
