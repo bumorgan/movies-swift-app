@@ -8,10 +8,14 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class MoviesTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
-    private var movies: [MovieRM]?
+    private var movies: [MovieRM] = []
     private let tableView: UITableView
+    
+    private let movieSelectedSubject: PublishSubject<MovieRM> = PublishSubject()
+    var movieSelectedObservable: Observable<MovieRM> { return movieSelectedSubject }
     
     init(tableView: UITableView) {
         self.tableView = tableView
@@ -26,16 +30,21 @@ class MoviesTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.movies?.count ?? 0
+        return self.movies.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = self.movies[indexPath.row]
+        movieSelectedSubject.onNext(movie)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
         
-        cell.textLabel?.text = "\(self.movies?[indexPath.row].title ?? "No title") (\(self.movies?[indexPath.row].releaseDate.components(separatedBy: "-")[0] ?? "????"))"
-        cell.detailTextLabel?.text = "Vote average: \(self.movies?[indexPath.row].voteAverage ?? 0)"
+        cell.textLabel?.text = "\(self.movies[indexPath.row].title ?? "No title") (\(self.movies[indexPath.row].releaseDate.components(separatedBy: "-")[0] ?? "????"))"
+        cell.detailTextLabel?.text = "Vote average: \(self.movies[indexPath.row].voteAverage ?? 0)"
         
-        let url = URL (string: self.movies?[indexPath.row].posterUrl ?? "")
+        let url = URL (string: self.movies[indexPath.row].posterUrl ?? "")
         cell.imageView?.kf.setImage(with: url)
         
         return cell

@@ -19,6 +19,7 @@ class MovieViewController: UIViewController, MovieView {
     var movie: MovieDetailsRM?
     var moviePresenter: MoviePresenter!
     
+    @IBOutlet var emptyState: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -44,9 +45,12 @@ class MovieViewController: UIViewController, MovieView {
         activityIndicator.stopAnimating()
     }
     
+    @IBAction func tryAgainButton(_ sender: Any) {
+        emptyState.isHidden = true
+        self.moviePresenter.getMovieDetails(id: self.movieId)
+    }
+    
     func displayEmptyState() {
-        let alert = UIAlertController(title: "Failed to get the movie information", message: "No internet connection", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { action in self.moviePresenter.getMovieDetails(id: self.movieId) }))
-        self.present(alert, animated: true)
+        emptyState.isHidden = false
     }
 }

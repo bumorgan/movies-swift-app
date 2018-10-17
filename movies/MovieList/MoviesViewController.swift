@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Moya
 import Kingfisher
 
 class MoviesViewController: UIViewController, MoviesView {
@@ -17,12 +16,20 @@ class MoviesViewController: UIViewController, MoviesView {
     var adapter: MoviesTableViewAdapter!
     var moviesPresenter: MoviesPresenter!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var emptyState: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         adapter = MoviesTableViewAdapter(tableView: moviesTableView)
+        adapter.movieSelectedObservable.subscribe(onNext: { movie in
+            self.performSegue(withIdentifier: "movie_detail", sender: movie.id)
+        })
         moviesPresenter = MoviesPresenter(moviesView: self)
         moviesPresenter.getMovieSummaryList()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        moviesPresenter.dispose()
     }
     
     func displayMoviesView(movies: [MovieRM]) {
@@ -41,15 +48,18 @@ class MoviesViewController: UIViewController, MoviesView {
     }
     
     func displayEmptyState() {
-        let alert = UIAlertController(title: "Failed to get the movies list", message: "No internet connection", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { action in self.moviesPresenter.getMovieSummaryList() }))        
-        self.present(alert, animated: true)
+        emptyState.isHidden = false
+    }
+    
+    @IBAction func tryAgainButton(_ sender: Any) {
+        emptyState.isHidden = true
+        moviesPresenter.getMovieSummaryList()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = self.moviesTableView.indexPathForSelectedRow {
+        if let movieId = sender as? Int {
             let controller = segue.destination as! MovieViewController
-            controller.movieId = movies?[indexPath.row].id
+            controller.movieId = movieId
         }
     }
 }
