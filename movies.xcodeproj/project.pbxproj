@@ -104,16 +104,10 @@
 		34515F3621638DBD0075936D /* movies */ = {
 			isa = PBXGroup;
 			children = (
-				346E052221679CFA00524A2A /* MovieDetails */,
-				346E052121679CF000524A2A /* MovieList */,
-				34515FBE2163BB210075936D /* Api */,
-				34515F3721638DBD0075936D /* AppDelegate.swift */,
-				34515F3B21638DBD0075936D /* Main.storyboard */,
-				34515F3E21638DBF0075936D /* Assets.xcassets */,
-				34515F4021638DBF0075936D /* LaunchScreen.storyboard */,
 				34515F4321638DBF0075936D /* Info.plist */,
-				3458DF872177BD1400632B65 /* MovieRDS.swift */,
-				3458DF892177BD2100632B65 /* MovieRepository.swift */,
+				3458DF8E2177CABD00632B65 /* Common */,
+				3458DF8D2177CAA000632B65 /* Data */,
+				3458DF8C2177CA6F00632B65 /* Presentation */,
 			);
 			path = movies;
 			sourceTree = "<group>";
@@ -134,12 +128,68 @@
 			name = Framework;
 			sourceTree = "<group>";
 		};
-		34515FBE2163BB210075936D /* Api */ = {
+		34515FBE2163BB210075936D /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
 				34515FC12163D4AD0075936D /* MovieApi.swift */,
 			);
-			path = Api;
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		3458DF8B2177CA5E00632B65 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				346E052221679CFA00524A2A /* MovieDetails */,
+				346E052121679CF000524A2A /* MovieList */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3458DF8C2177CA6F00632B65 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				34515F3B21638DBD0075936D /* Main.storyboard */,
+				34515F3E21638DBF0075936D /* Assets.xcassets */,
+				34515F4021638DBF0075936D /* LaunchScreen.storyboard */,
+				3458DF8B2177CA5E00632B65 /* Scenes */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3458DF8D2177CAA000632B65 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3458DF8F2177CACD00632B65 /* Remote */,
+				3458DF892177BD2100632B65 /* MovieRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3458DF8E2177CABD00632B65 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				34515F3721638DBD0075936D /* AppDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3458DF8F2177CACD00632B65 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				3458DF902177CB3400632B65 /* Model */,
+				34515FBE2163BB210075936D /* Infrastructure */,
+				3458DF872177BD1400632B65 /* MovieRDS.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		3458DF902177CB3400632B65 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				34515F492163A1880075936D /* MovieRM.swift */,
+				344F470C21664EC7004EC57C /* MovieDetailsRM.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		346E052121679CF000524A2A /* MovieList */ = {
@@ -149,7 +199,6 @@
 				346E051F216796A300524A2A /* MoviesView.swift */,
 				346E0517216786B600524A2A /* MoviesTableViewAdapter.swift */,
 				344F470E2166A64D004EC57C /* MoviesViewController.swift */,
-				34515F492163A1880075936D /* MovieRM.swift */,
 			);
 			path = MovieList;
 			sourceTree = "<group>";
@@ -158,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				344AC4362165056400E203A2 /* MovieViewController.swift */,
-				344F470C21664EC7004EC57C /* MovieDetailsRM.swift */,
 				346E05232167D13900524A2A /* MoviePresenter.swift */,
 				346E05252167D14600524A2A /* MovieView.swift */,
 			);
@@ -266,7 +314,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
+			shellPath = /bin/bash/;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */

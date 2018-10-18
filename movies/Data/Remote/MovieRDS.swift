@@ -13,12 +13,14 @@ import RxSwift
 import Foundation
 
 class MovieRDS {
+    
+    let provider = MoyaProvider<MovieApi>()
+    
     func getMovieSummaryList() -> Single<[MovieRM]> {
-        let provider = MoyaProvider<MovieApi>()
         return provider.rx.request(.movies).map([MovieRM].self)
     }
+    
     func getMovie(movieId: Int) -> Single<MovieDetailsRM> {
-        let provider = MoyaProvider<MovieApi>()
         return provider.rx.request(.movie(id: movieId)).map(MovieDetailsRM.self)
     }
 }
