@@ -1,6 +1,0 @@
-[submodule "Result"]
-	path = Result
-	url = https://github.com/antitypical/Result.git
-[submodule "Moya"]
-	path = Moya
-	url = https://github.com/Moya/Moya.git
