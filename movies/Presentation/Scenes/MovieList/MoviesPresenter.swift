@@ -14,9 +14,24 @@ import RxSwift
 class MoviesPresenter {
     let moviesView: MoviesView
     var disposables: CompositeDisposable = CompositeDisposable()
+    let movieRepository = MovieRepository()
     
     init(moviesView: MoviesView) {
         self.moviesView = moviesView
+        self.setupObservables()
+    }
+    
+    func setupObservables() {
+        moviesView.onTryAgain.subscribe(onNext: {
+            self.moviesView.hideEmptyState()
+            self.getMovieSummaryList()
+        })
+        moviesView.onViewLoaded.subscribe(onNext: {
+            self.getMovieSummaryList()
+        })
+        moviesView.onMovieSelected.subscribe(onNext: { (movie) in
+            self.moviesView.displayMovieDetail(id: movie.id)
+        })
     }
     
     func dispose() {
@@ -25,7 +40,7 @@ class MoviesPresenter {
     }
     
     func getMovieSummaryList() -> Void {
-        let movieRepository = MovieRepository()
+        
         self.moviesView.displayLoading()
         let disposable = movieRepository.getMovieSummaryList().subscribe(onSuccess: { response in
             if let movies = try? response {

@@ -11,11 +11,11 @@ import UIKit
 import RxSwift
 
 class MoviesTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
-    private var movies: [MovieRM] = []
+    private var movies: [Movie] = []
     private let tableView: UITableView
     
-    private let movieSelectedSubject: PublishSubject<MovieRM> = PublishSubject()
-    var movieSelectedObservable: Observable<MovieRM> { return movieSelectedSubject }
+    private let movieSelectedSubject: PublishSubject<Movie> = PublishSubject()
+    var movieSelectedObservable: Observable<Movie> { return movieSelectedSubject }
     
     init(tableView: UITableView) {
         self.tableView = tableView
@@ -24,7 +24,7 @@ class MoviesTableViewAdapter: NSObject, UITableViewDelegate, UITableViewDataSour
         self.tableView.dataSource = self
     }
     
-    func setData(movies: [MovieRM]){
+    func setData(movies: [Movie]){
         self.movies = movies
         self.tableView.reloadData()
     }

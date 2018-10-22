@@ -25,13 +25,13 @@ class MoviePresenter {
     }
     
     func getMovieDetails(id: Int) -> Void {
-        let provider = MoyaProvider<MovieApi>()
+        let movieRepository = MovieRepository()
         self.movieView.displayLoading()
         
-        let disposable = provider.rx.request(.movie(id: id)).subscribe(onSuccess: { response in
-            if let movie = try? response.map(MovieDetailsRM.self) {
+        let disposable = movieRepository.getMovie(movieId: id).subscribe(onSuccess: { response in
+            if let movie = try? response {
                 self.movieView.hideLoading()
-                self.movieView.displayMovieView(movie: movie)
+                self.movieView.displayMovieView(movie: response)
             }
         }) { error in
             self.movieView.hideLoading()

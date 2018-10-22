@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 
-struct MovieDetailsRM: Decodable {
+struct MovieDetailsRM: Codable {
     let adult: Bool
     let backdropUrl: String
     let id: Int

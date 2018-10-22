@@ -8,31 +8,34 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
 
 class MoviesViewController: UIViewController, MoviesView {
     
     @IBOutlet var moviesTableView: UITableView!
-    var movies: [MovieRM]?
+    var movies: [Movie]?
     var adapter: MoviesTableViewAdapter!
     var moviesPresenter: MoviesPresenter!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var tryAgainButton: UIButton!
     @IBOutlet var emptyState: UIView!
     
+    private let onViewLoadedSubject: PublishSubject<()> = PublishSubject()
+    private let onMovieSelectedSubject: PublishSubject<Movie> = PublishSubject()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         adapter = MoviesTableViewAdapter(tableView: moviesTableView)
-        adapter.movieSelectedObservable.subscribe(onNext: { movie in
-            self.performSegue(withIdentifier: "movie_detail", sender: movie.id)
-        })
         moviesPresenter = MoviesPresenter(moviesView: self)
-        moviesPresenter.getMovieSummaryList()
+        onViewLoadedSubject.onNext(())
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         moviesPresenter.dispose()
     }
     
-    func displayMoviesView(movies: [MovieRM]) {
+    func displayMoviesView(movies: [Movie]) {
         self.movies = movies
         self.adapter.setData(movies: movies)
     }
@@ -51,9 +54,24 @@ class MoviesViewController: UIViewController, MoviesView {
         emptyState.isHidden = false
     }
     
-    @IBAction func tryAgainButton(_ sender: Any) {
+    func displayMovieDetail(id: Int) {
+        self.performSegue(withIdentifier: "movie_detail", sender: id)
+    }
+    
+    func hideEmptyState() {
         emptyState.isHidden = true
-        moviesPresenter.getMovieSummaryList()
+    }
+    
+    var onTryAgain: Observable<()> {
+        return tryAgainButton.rx.tap.asObservable()
+    }
+    
+    var onViewLoaded: Observable<()> {
+        return onViewLoadedSubject
+    }
+    
+    var onMovieSelected: Observable<Movie> {
+        return adapter.movieSelectedObservable
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

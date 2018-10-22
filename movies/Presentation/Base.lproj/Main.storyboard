@@ -60,9 +60,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ott-oH-dio">
                                         <rect key="frame" x="175" y="16" width="64" height="30"/>
                                         <state key="normal" title="Try Again"/>
-                                        <connections>
-                                            <action selector="tryAgainButton:" destination="hgd-VS-R4F" eventType="touchUpInside" id="Rzw-6y-Ncg"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,6 +94,7 @@
                         <outlet property="activityIndicator" destination="cmM-6U-TCC" id="90c-ay-rGc"/>
                         <outlet property="emptyState" destination="W9K-nc-AV5" id="RbF-L2-y30"/>
                         <outlet property="moviesTableView" destination="yiu-bc-Rsk" id="Svc-jU-BVZ"/>
+                        <outlet property="tryAgainButton" destination="ott-oH-dio" id="FGb-tJ-kdp"/>
                         <segue destination="Pl5-rW-edh" kind="show" identifier="movie_detail" id="Odk-14-Xk5"/>
                     </connections>
                 </viewController>

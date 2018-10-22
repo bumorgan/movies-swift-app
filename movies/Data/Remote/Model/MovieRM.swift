@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MovieRM: Decodable {
+struct MovieRM: Codable {
     let id: Int
     let voteAverage: Float
     let title: String

@@ -16,7 +16,7 @@ class MovieViewController: UIViewController, MovieView {
     @IBOutlet var movieTitleLabel: UILabel!
     @IBOutlet var movieImageView: UIImageView!
     var movieId: Int!
-    var movie: MovieDetailsRM?
+    var movie: MovieDetails?
     var moviePresenter: MoviePresenter!
     
     @IBOutlet var emptyState: UIView!
@@ -28,7 +28,7 @@ class MovieViewController: UIViewController, MovieView {
         moviePresenter.getMovieDetails(id: movieId)
     }
     
-    func displayMovieView(movie: MovieDetailsRM) {
+    func displayMovieView(movie: MovieDetails) {
         self.movie = movie
         self.overviewLabel.text = self.movie?.overview
         self.movieTitleLabel.text = "\(self.movie?.title ?? "No title") (\(self.movie?.releaseDate.components(separatedBy: "-")[0] ?? "????"))"
